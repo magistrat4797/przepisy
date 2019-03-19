@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Panel SRH</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simter-vue-table@0.6.1/dist/simter-vue-table.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue-tables-2@1.4.70/dist/vue-tables-2.min.js"></script> -->
+
+	<script src="js/vue.js"></script>
+
+	<link href="css/vuejs-dialog.min.css" rel="stylesheet">
+	<script type="text/javascript" src="js/vuejs-dialog.min.js"></script>
+	<script type="text/javascript" src="js/vuejs-dialog-mixin.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+	<div class="container">
+		<div class="row">
+			<div class="menu col-lg-12 col-md-12">
+				<ol>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-title" aria-expanded="false" aria-controls="collapse-title">Tytuł
+							<div class="arrow-edited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-title">
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Tytuł</th>
+										<th>Edycja tytułu</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>Żurek z pieczoną białą kiełbasą, musztardą francuską, piwem, miodem i puree ziemniaczanym oraz pieczonym jabłkiem</td>
+										<td><textarea cols="30" rows="3"></textarea></td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-difficulty" aria-expanded="false" aria-controls="collapse-difficulty">Trudność przepisu
+							<div class="arrow-notedited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-difficulty">
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Poziom trudności</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-preparation-time" aria-expanded="false" aria-controls="collapse-preparation-time">Czas przygotowania
+							<div class="arrow-notedited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-preparation-time">
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Czas w minutach</th>
+										<th>Edycja czasu</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>90 minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-waiting-time" aria-expanded="false" aria-controls="collapse-waiting-time">Czas oczekiwania (opcjonalnie)
+							<div class="arrow-edited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-waiting-time">
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Czas w minutach</th>
+										<th>Edycja czasu</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>45 minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-portions-number" aria-expanded="false" aria-controls="collapse-portions-number">Liczba porcji
+							<div class="arrow-notedited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-portions-number">
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Ilość</th>
+										<th>Edycja ilości</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td><input type="number" min="0" max="99"> porcji</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-ingredients" aria-expanded="false" aria-controls="collapse-ingredients">Składniki
+							<div class="arrow-edited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-ingredients">
+							<st-table id="ingredients-table" class="table collapse-table" :columns="columns" :rows="rows"></st-table>
+	
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Nazwa składnika</th>
+										<th>Nazwa składnika głównego</th>
+										<th>Nazwa składnia USDA (język angielski)</th>
+										<th>Komentarz</th>
+										<th>Ilość</th>
+										<th>Jednostka</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>Żurek nasza specjalność Winiary</td>
+										<td>Zupa</td>
+										<td>Zupa</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Suszone grzyby</td>
+										<td>Zupa</td>
+										<td>Zupa</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Woda</td>
+										<td>Zupa</td>
+										<td>Zupa</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Sól i pieprz</td>
+										<td>Zupa</td>
+										<td>Zupa</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Kiełbasa</td>
+										<td>Kiełbasa</td>
+										<td>Kiełbasa</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Cebula</td>
+										<td>Kiełbasa</td>
+										<td>Kiełbasa</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Olej</td>
+										<td>Kiełbasa</td>
+										<td>Kiełbasa</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Musztarda francuska</td>
+										<td>Marynata do kiełbasy</td>
+										<td>Marynata do kiełbasy</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Miód</td>
+										<td>Marynata do kiełbasy</td>
+										<td>Marynata do kiełbasy</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Majeranek</td>
+										<td>Marynata do kiełbasy</td>
+										<td>Marynata do kiełbasy</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Sół i pieprz</td>
+										<td>Marynata do kiełbasy</td>
+										<td>Marynata do kiełbasy</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Jasne piwo</td>
+										<td>Marynata do kiełbasy</td>
+										<td>Marynata do kiełbasy</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Kwaśne i twarde jabłka</td>
+										<td>Pieczone jabłka</td>
+										<td>Pieczone jabłka</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Olej rzepakowy</td>
+										<td>Pieczone jabłka</td>
+										<td>Pieczone jabłka</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Majeranek suszony</td>
+										<td>Pieczone jabłka</td>
+										<td>Pieczone jabłka</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr v-for="(row,index) in ingredientRows" :key="row.id">
+										<td><input type="text"></td>
+										<td>-</td>
+										<td>-</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">Nie wybrano</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">opakowania</option>
+												<option value="kostki">sztuki</option>
+												<option value="kostki">garść</option>
+												<option value="kostki">L</option>
+												<option value="kostki">ML</option>
+												<option value="kostki">KG</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+										<td @click="removeIngredientRow(index)"><span class="glyphicon glyphicon-trash"></span></td>
+									</tr>
+								</tbody>
+							</table>
+							<button class="btn btn-warning btn-add" @click="addIngredientRow">Dodaj składnik</button>
+							<button class="btn btn-info btn-save" @click="saveIngredientRow">Zapisz zmiany</button>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-preparation-steps" aria-expanded="false" aria-controls="collapse-preparation-steps">Kroki przygotowania
+							<div class="arrow-edited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-preparation-steps">
+							<table class="table collapse-table">
+								<thead>
+										<th>Numer kroku</th>
+										<th>Nazwa kroku</th>
+										<th>Edycja nazwy</th>
+										<th>Trudność</th>
+										<th>Czas przygotowania</th>
+										<th>Czas oczekiwania</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Suszone grzyby namocz i posiekaj.</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Żurek WINIARY przygotuj zgodnie z instrukcją na opakowaniu i zagotuj. Dodaj suszone grzyby z zalewą i gotuj jeszcze 15 minut. Dopraw do smaku.</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Cebulę pokrój w piórka i obsmaż na oleju, aż będzie rumiana. Następnie przełóż ją do naczynia do zapiekania, a na wierzchu ułóż kiełbasę (w całości).</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Musztardę wymieszaj z miodem, majerankiem, solą i pieprzem oraz odrobiną piwa. Powstałą marynatą posmaruj kiełbasę. Całość uzupełnij pozostałym piwem i wstaw do piekarnika rozgrzanego do 200°C.</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Piecz około 30-45 minut, podlewając od czasu do czasu marynatą, aż kiełbaski się zarumienią. W połowie pieczenia, obróć kiełbaski na drugą stronę.</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>Po upieczeniu, połowę cebuli, wraz sokiem powstałym podczas pieczenia oraz połową upieczonej kiełbasy pokrojonej w plasterki, dodaj do zupy i gotuj całość jeszcze 5-10 minut.</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>Jabłka pokrój w ósemki, pozbywając się gniazd nasiennych. Skrop je olejem, dopraw solą, pieprzem i majerankiem. Tak przygotowane jabłka piecz przez około 15 minut w temperaturze 200°C (jeśli nie lubisz jabłek ze skórką, obierz je przed pieczeniem).</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>Do głębokiego talerza włóż porcję purée ziemniaczanego i zalej ciepłą zupą. Dołóż pozostałą pokrojoną kiełbaskę z cebulą i sosem, a na koniec uzupełnij całość kawałkami upieczonego jabłka.</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr v-for="(row,idx) in StepRows" :key="row.id">
+										<td>{{idx+9}}</td>
+										<td>-</td>
+										<td><textarea cols="30"></textarea></td>
+										<td>
+											<select name="difficulty">
+												<option value="nie wybrano">Nie wybrano</option>
+												<option value="latwy">Łatwy</option>
+												<option value="sredni">Średni</option>
+												<option value="trudny">Trudny</option>
+											</select>
+										</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td><input type="number" min="0" max="999"> minut</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+										<td @click="removeStepRow(idx)"><span class="glyphicon glyphicon-trash"></span></td>
+									</tr>
+								</tbody>
+							</table>
+							<button class="btn btn-warning btn-add" @click="addStepRow">Dodaj krok</button>
+							<button class="btn btn-info btn-save">Zapisz zmiany</button>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-product" aria-expanded="false" aria-controls="collapse-product">Produkt Winiary
+							<div class="arrow-notedited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-product">
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Nazwa składnika</th>
+										<th>Nazwa składnika głównego</th>
+										<th>Nazwa składnia USDA (język angielski)</th>
+										<th>Komentarz</th>
+										<th>Ilość</th>
+										<th>Jednostka</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>Rosół drobiowy Winiary</td>
+										<td>PRODUKT</td>
+										<td>PRODUKT</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Chrzan</td>
+										<td>Chrzan</td>
+										<td>PRODUKT</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki1</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+									<tr>
+										<td>Bułka tarta</td>
+										<td>PRODUKT</td>
+										<td>PRODUKT</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><input type="number" min="1" max="10"></td>
+										<td>
+											<select name="jednostka">
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+												<option value="kostki">kostki</option>
+											</select>
+										</td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-description" aria-expanded="false" aria-controls="collapse-description">Opis przepisu
+							<div class="arrow-notedited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-description">
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Opis</th>
+										<th>Edycja opisu</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>Żurek z pieczoną białą kiełbasą, musztardą francuską, piwem, miodem i puree ziemniaczanym oraz pieczonym jabłkiem to propozycja na wyjątkowe wielkanocne danie. Bogactwo dodatków i nowych smaków sprawia, że tradycyjna zupa nabiera zupełnie nowego charakteru. Podanie Żurku Nasza Specjalność WINIARY z aromatycznymi grzybami, suszonym jabłkiem i zamarynowaną białą kiełbasą przyczynia się do tego, że zupa będzie bardzo sycąca. Żurek z pieczoną kiełbasą bardzo dobrze sprawdzi się jako wykwintna propozycja na świąteczne danie.</td>
+										<td><textarea cols="30"></textarea></td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li>
+						<h3 data-toggle="collapse" data-target="#collapse-photo" aria-expanded="false" aria-controls="collapse-photo">Zdjęcie
+							<div class="arrow-edited"></div>
+						</h3>
+						<div class="collapse multi-collapse" id="collapse-photo">
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Zdjęcie</th>
+										<th>Do zmiany</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>Pulpeciki w sosie porowo-chrzanowym</td>
+										<td><input type="checkbox">TAK</td>
+										<td @click="showModal = true"><span class="glyphicon glyphicon-comment">(0)</span></td>
+										<td><label class="label-accept"><input type="checkbox" name="checkbox" value="accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+				</ol>
+			</div>
+			<!-- <div class="col-lg-12 col-md-12">
+				<h1><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button>Podstawowe dane przepisu:</h1>
+				<table class="table table-first">
+				  <tbody>
+				    <tr data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+				      	<th>1. Tytuł
+							<div class="arrow-edited"></div>
+				      	</th>
+					</tr>
+					<tr class="collapse multi-collapse" id="collapse1">
+						<td>
+							<table class="table collapse-table">
+								<tbody>
+									<tr>
+										<th>Tytuł</th>
+										<th>Edycja tytułu</th>
+										<th>Komentarz</th>
+										<th>Akceptacja SENIORA</th>
+									</tr>
+									<tr>
+										<td>Pulpeciki w sosie porowo-chrzanowym</td>
+										<td>Pulpeciki w sosie chrzanowym</td>
+										<td>Komentarze – liczba komentarzy</td>
+										<td><input type="checkbox" id="title-accept"><label for="title-accept">Akceptacja</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				    <tr data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+				      	<th>2. Czas przygotowania
+							<div class="arrow-notedited"></div>
+				      	</th>
+					</tr>
+					<tr class="collapse multi-collapse" id="collapse2">
+						<td>
+							<div class="col-lg-6 col-md-6">test</div>
+							<div class="col-lg-6 col-md-6">test</div>
+							<div class="col-lg-6 col-md-6">test</div>
+							<div class="col-lg-6 col-md-6">test</div>
+						</td>
+					</tr>
+				    <tr>
+				      	<th>3. Czas oczekiwania (opcjonalnie)
+							<div class="arrow-notedited"></div>
+				      	</th>
+					</tr>
+				    <tr>
+				      	<th>4. Liczba porcji
+							<div class="arrow-edited"></div>
+				      	</th>
+					</tr>
+				    <tr>
+				      	<th>5. Składniki
+							<div class="arrow-edited"></div>
+				      	</th>
+					</tr>
+				    <tr>
+				      	<th>6. Kroki przygotowania
+							<div class="arrow-notedited"></div>
+				      	</th>
+					</tr>
+				    <tr>
+				      	<th>7. Produkt Winiary
+							<div class="arrow-edited"></div>
+				      	</th>
+					</tr>
+				    <tr>
+				      	<th>8. Opis przepisu
+							<div class="arrow-notedited"></div>
+				      	</th>
+					</tr>
+				    <tr>
+				      	<th>9. Zdjęcie
+							<div class="arrow-notedited"></div>
+				      	</th>
+					</tr>
+				  </tbody>
+				</table>
+				<table class="table table-first">
+				  <tbody>
+				    <tr>
+				      	<th>Nazwa przepisu:</th>
+				      	<td>Minestrone – włoska zupa warzywna</td>
+				      	<td><input type="text" class="edit-input" :disabled="disabled == 1 ? true : false"></td>
+						<td><a href="#" class="edit" title="Edit" @click="disabled = (disabled + 1) % 2"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+					</tr>
+				    <tr>
+				      	<th>Ilość porcji:</th>
+				      	<td>8</td>
+				      	<td><input type="number" min="0" class="edit-input" :disabled="disabled == 1 ? true : false"></td>
+						<td><a href="#" class="edit" title="Edit" @click="disabled = (disabled + 1) % 2"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+					</tr>
+				    <tr>
+				      	<th>Czas przygotowania:</th>
+				      	<td>45 min.</td>
+				      	<td><input type="text" class="edit-input" :disabled="disabled == 1 ? true : false"></td>
+						<td><a href="#" class="edit" title="Edit" @click="disabled = (disabled + 1) % 2"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+					</tr>
+				    <tr>
+				      	<th>Czas oczekiwania:</th>
+				      	<td>15 min.</td>
+				      	<td><input type="text" class="edit-input" :disabled="disabled == 1 ? true : false"></td>
+						<td><a href="#" class="edit" title="Edit" @click="disabled = (disabled + 1) % 2"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+					</tr>
+				    <tr>
+				      	<th>Opis przepisu:</th>
+						<td>
+							Zupa minestrone to popularna włoska zupa przygotowywana na bazie warzyw, głównie cukinii. Przygotowywana jest w wielu regionach Włoch na swój niepowtarzalny sposób. Proponujemy minestrone w wersji klasycznej – z dużą ilością warzyw i aromatycznym Bulionem drobiowym WINIARY. Przekonaj się, że minestrone – włoska zupa warzywna, wspaniale smakuje również w polskiej kuchni!
+						</td>
+				      	<td><textarea class="edit-field" :disabled="disabled == 1 ? true : false"></textarea></td>
+						<td><a href="#" class="edit" title="Edit" @click="disabled = (disabled + 1) % 2"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div> -->
+		<!-- <div class="row">
+			<div class="col-lg-12 col-md-12">
+				<h1><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button>Składniki:</h1>
+				<table class="table table-second">
+				  <thead>
+				    <tr>
+				      <th>Nazwa składnika</th>
+				      <th>Ilość</th>
+				      <th>Jednostka</th>
+				      <th></th>
+				      <th></th>
+				      <th></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>Woda</td>
+				      <td>2</td>
+				      <td>L</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Cebula</td>
+				      <td>1</td>
+				      <td>Sztuka</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Cukinia</td>
+				      <td>1</td>
+				      <td>Sztuka</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Czosnek</td>
+				      <td>4</td>
+				      <td>Ząbki</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Młody szpinak</td>
+				      <td>1</td>
+				      <td>Garść</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Fasolka szparagowa</td>
+				      <td>250</td>
+				      <td>G</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Marchew</td>
+				      <td>1</td>
+				      <td>Sztuka</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Pietruszka</td>
+				      <td>1</td>
+				      <td>Sztuka</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Krojone pomidory</td>
+				      <td>1</td>
+				      <td>Puszka</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Drobny makaron</td>
+				      <td>1,5</td>
+				      <td>Szklanki</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Sól i pieprz</td>
+				      <td>Do smaku</td>
+				      <td>-</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Oliwa z oliwek</td>
+				      <td>2</td>
+				      <td>Łyżki</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				    <tr>
+				      <td>Świeża bazylia</td>
+				      <td>0,5</td>
+				      <td>Pęczka</td>
+						<td><a href="#" class="edit" title="Edit"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button></td>
+						<td><input type="checkbox"></td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<h1><button class="edit" title="Comment" @click="showModal = true"><i class="glyphicon glyphicon-comment"></i></button>Przygotowanie:</h1>
+				<textarea name="opis" id="przygotowanie" rows="10"></textarea>
+				<button class="btn btn-primary">Edytuj</button>
+			</div>
+		</div>
+	</div> -->
+	<modal :show="showModal" @close="showModal = false"></modal>
+	</div>
+
+	<script type="x/template" id="modal-template">
+	    <transition name="modal">
+	        <div class="modal-mask" @click="close" v-show="show">
+	            <div class="modal-container" @click.stop>
+	                <div class="modal-header">
+	                    <h2>Komentarze:</h2>
+	                </div>
+	                <div class="modal-body">
+	                    <label class="form-label">
+	                        <h4>Dodaj komentarz: </h4>
+	                        <textarea v-model="body" rows="5" class="form-control"></textarea>
+	                    </label>
+	                </div>
+	                <div class="modal-footer text-right">
+	                    <button class="btn btn-primary modal-default-button" @click="savePost()">
+	                        Dodaj komentarz
+	                    </button>
+	                </div>
+	            </div>
+	        </div>
+	    </transition>
+	</script>
+
+	<script>window.Vue.use(VuejsDialog.main.default)</script>
+	<script src="js/script.js"></script>
+</body>
+</html>
